@@ -12,8 +12,9 @@ public enum TipoTrabajo
 // Interface que contiene la información de la persona
 public interface IInfoPersona
 {
-    public string nombre { set; get; }
-    public string desc { set; get; }
+    protected string nombre { set; get; }
+    protected string desc { set; get; }
+    protected string[] afficiones { set; get; }
 
 }
 
@@ -33,7 +34,7 @@ public class Tarjeta : Empleado, IInfoPersona
     public string nombre { get; set; }
     public string desc { get; set; }
     public override TipoTrabajo Trabajo { set; get; } = TipoTrabajo.DESEMPLEADO;
-    private string[] _afficiones { set; get; } = [];
+    public string[] afficiones { set; get; } = [];
 
 
     // Constructores
@@ -47,11 +48,9 @@ public class Tarjeta : Empleado, IInfoPersona
     {
         nombre = nombreTarjeta;
         desc = descripcion;
-        _afficiones = afficionesTarjeta;
+        afficiones = afficionesTarjeta;
         Trabajo = trabajo;
     }
-
-
 
     // Métodos
     public string getNombre()
@@ -80,7 +79,14 @@ public class Tarjeta : Empleado, IInfoPersona
 
     public string[] getSfficiones()
     {
-        return _afficiones;
+        try
+        {
+            return afficiones;
+        }
+        catch (NullReferenceException e)
+        {
+            throw new NullReferenceException("Error, datos para imprimir válidos");
+        }
     }
 }
 
@@ -89,21 +95,23 @@ public class Impresora
 {
     private List<Tarjeta> _tarjetas = new List<Tarjeta>();
 
+    // Métodos
     public void imprimirTarjetas()
     {
         foreach (Tarjeta info in _tarjetas)
-        {
-            Console.WriteLine($"Esta tarjeta es del {info.getTrabajo()} {info.getNombre()}, y su descripción es {info.getdesc()} ");
-            if (info.getSfficiones().Length > 0)
-            { // En caso de tener afficiones, las imprime
-                Console.Write("además, tienes las siguientes afficiones:\n");
-                foreach (string s in info.getSfficiones())
-                {
-                    Console.Write($"*{s}\n");
+            {
+                Console.WriteLine($"Esta tarjeta es del {info.getTrabajo()} {info.getNombre()}, y su descripción es {info.getdesc()} ");
+                if (info.getSfficiones().Length > 0)
+                { // En caso de tener afficiones, las imprime
+                    Console.Write("además, tienes las siguientes afficiones:\n");
+                    foreach (string s in info.getSfficiones())
+                    {
+                        Console.Write($"*{s}\n");
+                    }
                 }
+                else Console.Write("y no tiene afficiones.\n"); // En caso de no tenerla, imprime un mensaje que diga que no tiene afficiones
             }
-            else Console.Write("y no tiene afficiones.\n"); // En caso de no tenerla, imprime un mensaje que diga que no tiene afficiones
-        }
+
     }
     
     public void añadirTarjeta(string nombreTarjeta, string descripcion, string[] afficionesTarjeta, TipoTrabajo trabajo)
@@ -129,22 +137,28 @@ class Programa
     static void Main(string[] args)
     {
         Log lg = new Log();
+        try 
+        { 
+            lg.addLinea("Iniciando la clase impresora");
+            Impresora impresora = new Impresora();
 
-        lg.addLinea("Iniciando la clase impresora");
-        Impresora impresora = new Impresora();
+            lg.addLinea("Se añadio una tarjeta de presentación a lista");
+            impresora.añadirTarjeta("Juan garces", "Empleado de una farmaceutica", [], TipoTrabajo.HUMANIDADES);
+            lg.addLinea("Se añadio una tarjeta de presentación a lista");
+            impresora.añadirTarjeta("Tomas Torres", "Empleado de una empresa de electrodómesticos", ["Jugar", "Ver series", "Cocinar"], TipoTrabajo.COMERCIO);
 
-        lg.addLinea("Se añadio una tarjeta de presentación a lista");
-        impresora.añadirTarjeta("Juan garces", "Empleado de una farmaceutica", [], TipoTrabajo.HUMANIDADES);
-        lg.addLinea("Se añadio una tarjeta de presentación a lista");
-        impresora.añadirTarjeta("Tomas Torres", "Empleado de una empresa de electrodómesticos", ["Jugar", "Ver series", "Cocinar"], TipoTrabajo.COMERCIO);
+            lg.addLinea("Se imprimen las tarjetas");
+            impresora.imprimirTarjetas();
 
-        lg.addLinea("Se imprimen las tarjetas");
-        impresora.imprimirTarjetas();
-
-        lg.addLinea("Borrando la lista de tarjetas");
-        impresora.BorrarLista();
-
+            lg.addLinea("Borrando la lista de tarjetas");
+            impresora.BorrarLista();       
+        }
+        catch (Exception e) {
+            lg.addLinea("Error, El programa ha tenido un error");
+            throw new Exception("Error, El programa ha tenido un error");
+        }
         lg.crearLog();
+
     }
 }
 

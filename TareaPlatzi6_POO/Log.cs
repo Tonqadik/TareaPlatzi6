@@ -11,11 +11,20 @@
         addLinea("Programa iniciado");
     }
 
+    // Añade una línea al log
     public void addLinea(string linea)
     {
-        logStr += $"[{DateTime.Now.ToString()}] {linea}\n";
+        try
+        {
+            logStr += $"[{DateTime.Now.ToString()}] {linea}\n";
+        }
+        catch (ArgumentException e) {
+            logStr += $"[{DateTime.Now.ToString()}] Error, se intento añadir una cadena.\n";
+            throw new ArgumentException("La linea esta vacía.");
+        }
     }
 
+    // Se crea el arcchivo log
     public void crearLog()
     {
         addLinea("Programa terminado");
