@@ -1,0 +1,14 @@
+C:\c#proyectos\TareaPlatzi6_POO\bin\Debug\net8.0\TareaPlatzi6_POO.exe
+C:\c#proyectos\TareaPlatzi6_POO\bin\Debug\net8.0\TareaPlatzi6_POO.deps.json
+C:\c#proyectos\TareaPlatzi6_POO\bin\Debug\net8.0\TareaPlatzi6_POO.runtimeconfig.json
+C:\c#proyectos\TareaPlatzi6_POO\bin\Debug\net8.0\TareaPlatzi6_POO.dll
+C:\c#proyectos\TareaPlatzi6_POO\bin\Debug\net8.0\TareaPlatzi6_POO.pdb
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.GeneratedMSBuildEditorConfig.editorconfig
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.AssemblyInfoInputs.cache
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.AssemblyInfo.cs
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.csproj.CoreCompileInputs.cache
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.dll
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\refint\TareaPlatzi6_POO.dll
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.pdb
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\TareaPlatzi6_POO.genruntimeconfig.cache
+C:\c#proyectos\TareaPlatzi6_POO\obj\Debug\net8.0\ref\TareaPlatzi6_POO.dll
